@@ -1,0 +1,169 @@
+"use client"
+import { Box, Container, Typography, Button } from "@mui/material"
+
+const stats = [
+  {
+    number: "450+",
+    label: "Project Completed",
+  },
+  {
+    number: "450+",
+    label: "Project Completed",
+  },
+]
+
+export default function HireMeSection() {
+  return (
+    <Box
+      sx={{
+        bgcolor: "#F2F4F7",
+        py: 8,
+      }}
+    >
+      <Container maxWidth="lg">
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+            flexDirection: { xs: "column", md: "row" },
+          }}
+        >
+          {/* Left Side - Image */}
+          <Box
+            sx={{
+              flex: { md: 1 },
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {/* Orange Circle Background */}
+            <Box
+              sx={{
+                width: { xs: 300, md: 400 },
+                height: { xs: 300, md: 400 },
+                borderRadius: "50%",
+                bgcolor: "#FF6B35",
+                position: "relative",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                overflow: "hidden",
+              }}
+            >
+              {/* Professional Photo */}
+              <Box
+                component="img"
+                src="/hire-me-photo.png"
+                alt="Professional photo - Why hire me"
+                sx={{
+                  width: "90%",
+                  height: "90%",
+                  objectFit: "cover",
+                  objectPosition: "center",
+                  borderRadius: "50%",
+                }}
+              />
+            </Box>
+          </Box>
+
+          {/* Right Side - Content */}
+          <Box
+            sx={{
+              flex: { md: 1 },
+              pl: { md: 4 },
+              textAlign: { xs: "center", md: "left" },
+            }}
+          >
+            {/* Heading */}
+            <Typography
+              variant="h2"
+              sx={{
+                mb: 3,
+                color: "#2C2C2C",
+                fontWeight: 700,
+                "& .highlight": {
+                  color: "#FF6B35",
+                },
+              }}
+            >
+              Why <span className="highlight">Hire me</span>?
+            </Typography>
+
+            {/* Description */}
+            <Typography
+              variant="body1"
+              sx={{
+                color: "#666",
+                lineHeight: 1.6,
+                mb: 4,
+                maxWidth: { xs: "100%", md: 400 },
+                mx: { xs: "auto", md: 0 },
+              }}
+            >
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate,
+              bibendum sodales
+            </Typography>
+
+            {/* Statistics */}
+            <Box
+              sx={{
+                display: "flex",
+                gap: 4,
+                mb: 4,
+                justifyContent: { xs: "center", md: "flex-start" },
+              }}
+            >
+              {stats.map((stat, index) => (
+                <Box key={index}>
+                  <Typography
+                    variant="h3"
+                    sx={{
+                      color: "#2C2C2C",
+                      fontWeight: 700,
+                      mb: 1,
+                    }}
+                  >
+                    {stat.number}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{
+                      color: "#666",
+                      fontWeight: 500,
+                    }}
+                  >
+                    {stat.label}
+                  </Typography>
+                </Box>
+              ))}
+            </Box>
+
+            {/* Hire Me Button */}
+            <Button
+              variant="outlined"
+              size="large"
+              sx={{
+                borderColor: "#2C2C2C",
+                color: "#2C2C2C",
+                borderRadius: "25px",
+                px: 4,
+                py: 1.5,
+                fontSize: "1.1rem",
+                fontWeight: 500,
+                "&:hover": {
+                  borderColor: "#FF6B35",
+                  color: "#FF6B35",
+                  bgcolor: "rgba(255, 107, 53, 0.05)",
+                },
+              }}
+            >
+              Hire me
+            </Button>
+          </Box>
+        </Box>
+      </Container>
+    </Box>
+  )
+}
