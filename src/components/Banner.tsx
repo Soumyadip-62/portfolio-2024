@@ -156,12 +156,12 @@ const Banner = () => {
                                 position: "absolute",
                                 bottom: 0,
                                 left: '50%',
-                                transform:'translateX(-50%)',
+                                transform: 'translateX(-50%)',
                                 p: 1.5,
                                 borderRadius: "20px",
                                 textAlign: "center",
                                 bgcolor: "white",
-                                width:'58%'
+                                width: '58%'
                             }}
                         >
                             <Rating value={5} readOnly size="small" sx={{ mb: 1 }} />
@@ -171,6 +171,7 @@ const Banner = () => {
                                     fontWeight: 700,
                                     color: "#2C2C2C",
                                     mb: 0.5,
+                                    fontFamily:'Lufga Semibold',
                                 }}
                             >
                                 10 Years

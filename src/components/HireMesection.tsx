@@ -1,5 +1,6 @@
 "use client"
 import { Box, Container, Typography, Button } from "@mui/material"
+import assets from "../assets"
 
 const stats = [
   {
@@ -17,7 +18,7 @@ export default function HireMeSection() {
     <Box
       sx={{
         bgcolor: "#F2F4F7",
-        py: 8,
+        py:12,
       }}
     >
       <Container maxWidth="lg">
@@ -43,8 +44,8 @@ export default function HireMeSection() {
               sx={{
                 width: { xs: 300, md: 400 },
                 height: { xs: 300, md: 400 },
-                borderRadius: "50%",
-                bgcolor: "#FF6B35",
+                borderRadius: "50px",
+                background: "linear-gradient(135deg, #FF6B35 0%, #FFD166 100%)",
                 position: "relative",
                 display: "flex",
                 alignItems: "center",
@@ -55,14 +56,14 @@ export default function HireMeSection() {
               {/* Professional Photo */}
               <Box
                 component="img"
-                src="/hire-me-photo.png"
+                src={assets.my_image2}
                 alt="Professional photo - Why hire me"
                 sx={{
-                  width: "90%",
-                  height: "90%",
+                  width: "93%",
+                  height: "93%",
                   objectFit: "cover",
-                  objectPosition: "center",
-                  borderRadius: "50%",
+                  objectPosition: "top",
+                  borderRadius: "50px",
                 }}
               />
             </Box>

@@ -14,7 +14,7 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Lufga Regular", "Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily: '"Lufga Regular", "Lufga Medium", "Lufga SemiBold", "Lufga Bold","Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontSize: "4rem",
       fontWeight: 700,

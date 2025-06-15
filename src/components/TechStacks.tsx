@@ -13,15 +13,43 @@ import npmLogo from "/assets/images/Logos/npm-seeklogo.com-2.svg";
 import githubLogo from "/assets/images/Logos/github-seeklogo.com.svg";
 import tailwindLogo from "/assets/images/Logos/tailwind-css-wordmark-seeklogo.com.svg";
 import tslogo from "/assets/images/Logos/typescript.svg";
+import Marquee from "react-fast-marquee";
+import { Box, styled } from '@mui/material';
 
 const TechStacks = () => {
   return (
-    <div>
+    <StyledtechStacks>
+      <Marquee autoFill>
+        <img src={htmlLogo} alt="" />
+        <img src={cssLogo} alt="" />
+        <img src={JsLogo} alt="" />
+        <img src={ReactLogo} alt="" />
+        <img src={NextLogo} alt="" />
+        <img src={ExpressLogo} alt="" />
+        <img src={NodeLogo} alt="" />
+        <img src={mongoLogo} alt="" />
+        <img src={bootstrapLogo} alt="" />
+        <img src={npmLogo} alt="" />
+        <img src={githubLogo} alt="" />
+        <img src={tailwindLogo} alt="" />
+        <img src={tslogo} alt="" />
+      </Marquee>
 
-      <img src={htmlLogo} alt="" />
 
-    </div>
+
+    </StyledtechStacks>
   )
 }
 
 export default TechStacks
+
+const StyledtechStacks = styled(Box)`
+padding: 40px 0;
+
+  img{
+    width: 70px;
+    height: auto;
+    margin: 0 20px;
+    object-fit: contain;
+  }
+`
