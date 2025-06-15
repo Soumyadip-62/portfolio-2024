@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react'
+
 import htmlLogo from "/assets/images/Logos/html5-without-wordmark-color.svg";
 import cssLogo from "/assets/images/Logos/css-3-seeklogo.com.svg";
 import JsLogo from "/assets/images/Logos/javascript-seeklogo.com.svg";

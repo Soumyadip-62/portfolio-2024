@@ -239,7 +239,7 @@ export default function ServicesSection() {
             gap: 1,
           }}
         >
-          {[0, 1, 2, 3].map((dot, index) => (
+          {[0, 1, 2, 3].map((_dot, index) => (
             <Box
               key={index}
               sx={{

@@ -9,6 +9,7 @@ import WorkExperienceSection from "./components/WorkExperience";
 function App() {
   return (
     <>
+    
       <Banner />
       <TechStacks/>
       <ServicesSection />

@@ -1,5 +1,6 @@
 import { AppBar, Avatar, Box, Button, Container, Paper, Toolbar, Typography } from '@mui/material'
-import React from 'react'
+
+import assets from '../assets'
 
 const Header = () => {
   return (
@@ -48,11 +49,12 @@ const Header = () => {
                       height: 32,
                       fontSize: "0.875rem",
                     }}
+                    src={assets.faviconLogo}
                   >
-                    JC
+                  
                   </Avatar>
-                  <Typography variant="h6" sx={{ color: "white", fontWeight: 600 }}>
-                    JCREA
+                  <Typography variant="h6" textTransform={'uppercase'} sx={{ color: "white", fontWeight: 700, fontFamily:'Cormorant Garamond' }}>
+                   Soumyadip
                   </Typography>
                 </Box>
 
