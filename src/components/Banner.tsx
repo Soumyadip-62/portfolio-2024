@@ -1,16 +1,46 @@
-
-import { Box } from '@mui/material'
-import Header from './header'
-import { Button, Typography, Container, Rating, Paper, Chip } from "@mui/material"
-import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward"
-import assets from '../assets'
+import { Box } from "@mui/material";
+import Header from "./header";
+import {
+    Button,
+    Typography,
+    Container,
+    Rating,
+    Paper,
+    Chip,
+} from "@mui/material";
+import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
+import assets from "../assets";
+import React from "react";
 
 const Banner = () => {
+    // Call showBackggroundEffect when scrolled
+    React.useEffect(() => {
+        const handleScroll = () => {
+            showBackggroundEffect();
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
+
+    const showBackggroundEffect = () => {
+        if (typeof window !== "undefined") {
+            console.log(window.scrollY)
+            if (window.scrollY > 2) {
+
+                document.querySelector('.background_effect')?.classList.add('show')
+            }
+
+            return window.scrollY || window.pageYOffset;
+        }
+        return 0;
+    }
+
+
     return (
         <Box sx={{ bgcolor: "background.default" }}>
             <Header />
             <Container maxWidth="lg" sx={{ mt: 6 }}>
-                <Box sx={{ display: "flex", alignItems: "center", minHeight: "70vh" }}>
+                <Box sx={{ display: "flex", alignItems: "center", minHeight: "75vh" }}>
                     {/* Left Content */}
                     <Box sx={{ flex: 1, pr: 4 }}>
                         {/* Hello Chip */}
@@ -51,7 +81,7 @@ const Banner = () => {
                                 },
                             }}
                         >
-                            I'm <span className="highlight">Jenny</span>,<br />
+                            I'm <span className="highlight">Soumyadip</span>,<br />
                             Product Designer
                         </Typography>
 
@@ -119,7 +149,29 @@ const Banner = () => {
                     </Box>
 
                     {/* Right Content - Photo and Stats */}
-                    <Box sx={{ flex: 1, position: "relative", textAlign: "center" }}>
+                    <Box sx={{
+                        flex: 1, position: "relative", textAlign: "center",
+                        '.show': {
+                            width: "700px",
+                            height: '600px',
+
+                        }
+                    }}>
+                        <Box
+                            component="img"
+                            className="background_effect"
+                            src={assets.banner_bg_effect}
+                            width={0}
+                            height={0}
+                            sx={{
+                                objectFit: "contain",
+                                position: "absolute",
+                                bottom: "0",
+                                left: "50%",
+                                transform: "translateX(-50%)",
+                                transition: 'all 0.5s ease-in-out'
+                            }}
+                        />
                         {/* Orange Circle Background */}
                         <Box
                             sx={{
@@ -155,13 +207,13 @@ const Banner = () => {
                             sx={{
                                 position: "absolute",
                                 bottom: 0,
-                                left: '50%',
-                                transform: 'translateX(-50%)',
+                                left: "50%",
+                                transform: "translateX(-50%)",
                                 p: 1.5,
                                 borderRadius: "20px",
                                 textAlign: "center",
                                 bgcolor: "white",
-                                width: '58%'
+                                width: "58%",
                             }}
                         >
                             <Rating value={5} readOnly size="small" sx={{ mb: 1 }} />
@@ -171,7 +223,7 @@ const Banner = () => {
                                     fontWeight: 700,
                                     color: "#2C2C2C",
                                     mb: 0.5,
-                                    fontFamily:'Lufga Semibold',
+                                    fontFamily: "Lufga Semibold",
                                 }}
                             >
                                 10 Years
@@ -189,11 +241,8 @@ const Banner = () => {
                     </Box>
                 </Box>
             </Container>
-
         </Box>
+    );
+};
 
-
-    )
-}
-
-export default Banner
+export default Banner;
