@@ -1,6 +1,12 @@
 "use client"
 import { Box, Container, Typography, Button } from "@mui/material"
 import assets from "../assets"
+import { useRef } from "react"
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   {
@@ -13,12 +19,37 @@ const stats = [
   },
 ]
 
+
 export default function HireMeSection() {
+
+  const ImageRef = useRef<HTMLDivElement | null>(null)
+
+  useGSAP(() => {
+    gsap.to('.img', {
+      translateY: '20px', delay: 0.5, scrollTrigger: {
+        trigger: ".img",
+        start: "top 80%", // when .img top hits 80% of viewport height
+        toggleActions: "play none reverse none",
+      }
+    });
+    gsap.to('.bg_ring', {
+      width: '500px',
+      height: '500px',
+      delay: 0.3,
+      scrollTrigger: {
+        trigger: ".bg_ring",
+        start: "top 80%",
+        toggleActions: "play none reverse none",
+      }
+    })
+
+  }, { scope: ImageRef })
+
   return (
     <Box
       sx={{
         bgcolor: "#F2F4F7",
-        py:12,
+        py: 15,
       }}
     >
       <Container maxWidth="lg">
@@ -40,32 +71,47 @@ export default function HireMeSection() {
             }}
           >
             {/* Orange Circle Background */}
-            <Box
-              sx={{
-                width: { xs: 300, md: 400 },
-                height: { xs: 300, md: 400 },
-                borderRadius: "50px",
-                background: "linear-gradient(135deg, #FF6B35 0%, #FFD166 100%)",
-                position: "relative",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                overflow: "hidden",
-              }}
-            >
-              {/* Professional Photo */}
+            <Box ref={ImageRef} sx={{
+              position: 'relative',
+
+            }}>
+              <img src={assets.bg_ring} alt="background_ring" className="bg_ring" style={{
+                width: 0,
+                height: 0,
+                position: 'absolute',
+                bottom: 0,
+                left: '50%',
+                transform: 'translate(-50%)'
+              }} />
               <Box
-                component="img"
-                src={assets.my_image2}
-                alt="Professional photo - Why hire me"
+                className='img'
                 sx={{
-                  width: "93%",
-                  height: "93%",
-                  objectFit: "cover",
-                  objectPosition: "top",
+                  width: { xs: 300, md: 400 },
+                  height: { xs: 300, md: 400 },
                   borderRadius: "50px",
+                  background: "linear-gradient(135deg, #FF6B35 0%, #FFD166 100%)",
+                  position: "relative",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "hidden",
                 }}
-              />
+              >
+                {/* Professional Photo */}
+
+                <Box
+                  component="img"
+                  src={assets.my_image2}
+                  alt="Professional photo - Why hire me"
+                  sx={{
+                    width: "93%",
+                    height: "93%",
+                    objectFit: "cover",
+                    objectPosition: "top",
+                    borderRadius: "50px",
+                  }}
+                />
+              </Box>
             </Box>
           </Box>
 

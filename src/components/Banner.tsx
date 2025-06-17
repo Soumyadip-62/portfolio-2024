@@ -10,30 +10,25 @@ import {
 } from "@mui/material";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import assets from "../assets";
-import React from "react";
+import  { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 
 const Banner = () => {
-    // Call showBackggroundEffect when scrolled
-    React.useEffect(() => {
-        const handleScroll = () => {
-            showBackggroundEffect();
-        };
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
-    }, []);
+    const rightContainer = useRef<HTMLDivElement | null>(null);
 
-    const showBackggroundEffect = () => {
-        if (typeof window !== "undefined") {
-            console.log(window.scrollY)
-            if (window.scrollY > 2) {
-
-                document.querySelector('.background_effect')?.classList.add('show')
-            }
-
-            return window.scrollY || window.pageYOffset;
-        }
-        return 0;
-    }
+    useGSAP(
+        () => {
+            gsap.to(".background_effect", {
+                width: "700px",
+                height: "700px",
+            });
+            gsap.fromTo('.exp_badge', {
+                scale: 0
+            }, { scale: 1 ,duration:0.5, delay:0.3})
+        },
+        { scope: rightContainer }
+    );
 
 
     return (
@@ -149,14 +144,19 @@ const Banner = () => {
                     </Box>
 
                     {/* Right Content - Photo and Stats */}
-                    <Box sx={{
-                        flex: 1, position: "relative", textAlign: "center",
-                        '.show': {
-                            width: "700px",
-                            height: '600px',
+                    <Box
+                        ref={rightContainer}
+                        sx={{
+                            flex: 1,
+                            position: "relative",
+                            textAlign: "center",
+                            // '.show': {
+                            //     width: "700px",
+                            //     height: '600px',
 
-                        }
-                    }}>
+                            // }
+                        }}
+                    >
                         <Box
                             component="img"
                             className="background_effect"
@@ -169,7 +169,7 @@ const Banner = () => {
                                 bottom: "0",
                                 left: "50%",
                                 transform: "translateX(-50%)",
-                                transition: 'all 1s ease-in-out'
+                                transition: "all 1s ease-in-out",
                             }}
                         />
                         {/* Orange Circle Background */}
@@ -204,6 +204,7 @@ const Banner = () => {
                         {/* Experience Badge */}
                         <Paper
                             elevation={3}
+                            className="exp_badge"
                             sx={{
                                 position: "absolute",
                                 bottom: 0,
