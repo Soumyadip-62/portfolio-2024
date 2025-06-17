@@ -169,7 +169,7 @@ const Banner = () => {
                                 bottom: "0",
                                 left: "50%",
                                 transform: "translateX(-50%)",
-                                transition: 'all 0.5s ease-in-out'
+                                transition: 'all 1s ease-in-out'
                             }}
                         />
                         {/* Orange Circle Background */}
