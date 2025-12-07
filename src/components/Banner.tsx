@@ -22,22 +22,39 @@ const Banner = () => {
             gsap.to(".background_effect", {
                 width: "700px",
                 height: "700px",
+                toggleActions: "play none reverse none",
             });
-            gsap.fromTo('.exp_badge', {
-                scale: 0
-            }, { scale: 1, duration: 0.5, delay: 0.3 })
+            gsap.fromTo(
+                ".exp_badge",
+                {
+                    scale: 0,
+                },
+                { scale: 1, duration: 0.5, delay: 0.3 }
+            );
         },
         { scope: rightContainer }
     );
 
-
     return (
-        <Box sx={{ bgcolor: "background.default" }} id="about">
+        <Box sx={{ bgcolor: "background.default", overflowX: "hidden" }} id="about">
             <Header />
-            <Container maxWidth="xl" sx={{ mt: 6 }}>
-                <Box sx={{ display: "flex", alignItems: "center", minHeight: "75vh" }}>
+            <Container maxWidth="lg" sx={{ mt: 6 }}>
+                <Box
+                    sx={{
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        minHeight: "75vh",
+                        flexWrap: "wrap",
+
+                        '@media(max-width:1199px)': {
+                            flexDirection: 'column-reverse',
+
+                        }
+                    }}
+                >
                     {/* Left Content */}
-                    <Box sx={{ flex: 1, pr: 4 }}>
+                    <Box sx={{ pr: { lg: 4, xs: 0 }, pb: { xs: 5, lg: 0 } }}>
                         {/* Hello Chip */}
                         <Chip
                             label="Hello!"
@@ -80,11 +97,8 @@ const Banner = () => {
                             Frontend Developer
                         </Typography>
 
-
-
                         {/* Testimonial */}
                         <Box sx={{ maxWidth: 600 }}>
-
                             <Typography
                                 variant="body1"
                                 sx={{
@@ -93,12 +107,15 @@ const Banner = () => {
                                     mb: 1,
                                 }}
                             >
-                                Hi, I’m Soumyadip — a Frontend Developer with 3.5 years of experience turning caffeine into clean code and chaotic ideas into user-friendly web experiences.
-                                I speak fluent JavaScript, dream in React components, and believe great design isn’t just pixels — it’s empathy in action.
-                                Whether it’s taming complex UX problems or collaborating with teams to ship something awesome, I love building interfaces that make users (and their mice) happy.
-
+                                Hi, I’m Soumyadip — a Frontend Developer with 3.5 years of
+                                experience turning caffeine into clean code and chaotic ideas
+                                into user-friendly web experiences. I speak fluent JavaScript,
+                                dream in React components, and believe great design isn’t just
+                                pixels — it’s empathy in action. Whether it’s taming complex UX
+                                problems or collaborating with teams to ship something awesome,
+                                I love building interfaces that make users (and their mice)
+                                happy.
                             </Typography>
-
                         </Box>
 
                         {/* Action Buttons */}
@@ -139,9 +156,11 @@ const Banner = () => {
                     <Box
                         ref={rightContainer}
                         sx={{
-                            flex: 1,
                             position: "relative",
                             textAlign: "center",
+                            pt: {
+                                xs: 20, lg: 0
+                            }
                             // '.show': {
                             //     width: "700px",
                             //     height: '600px',

@@ -1,5 +1,5 @@
 "use client"
-import { Box, Container, Typography, Button } from "@mui/material"
+import { Box, Container, Typography, Button, useMediaQuery } from "@mui/material"
 import assets from "../assets"
 import { useRef } from "react"
 import { useGSAP } from "@gsap/react"
@@ -24,6 +24,8 @@ export default function HireMeSection() {
 
   const ImageRef = useRef<HTMLDivElement | null>(null)
 
+  const isMobileScreen = useMediaQuery('(max-width:899px)')
+
   useGSAP(() => {
     gsap.to('.img', {
       translateY: '20px', delay: 0.5, scrollTrigger: {
@@ -33,8 +35,8 @@ export default function HireMeSection() {
       }
     });
     gsap.to('.bg_ring', {
-      width: '500px',
-      height: '500px',
+      width: isMobileScreen ? "340px" : '500px',
+      height: isMobileScreen ? "340px" : '500px',
       delay: 0.3,
       scrollTrigger: {
         trigger: ".bg_ring",
@@ -49,7 +51,7 @@ export default function HireMeSection() {
     <Box
       sx={{
         bgcolor: "#F2F4F7",
-        py: 15,
+        py: { md: 15, xs: 8 },
       }}
     >
       <Container maxWidth="xl">

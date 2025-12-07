@@ -78,7 +78,8 @@ export default function ProjectsSection() {
     <Box
       sx={{
         bgcolor: "#1A1A1A",
-        py: 10,
+        py: { md: 8, xs: 5 },
+
         position: "relative",
         overflow: "hidden",
       }}

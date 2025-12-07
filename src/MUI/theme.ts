@@ -1,6 +1,5 @@
 import { createTheme } from "@mui/material";
 
-
 export const theme = createTheme({
   palette: {
     primary: {
@@ -14,11 +13,15 @@ export const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Lufga Regular", "Lufga Medium", "Lufga SemiBold", "Lufga Bold","Roboto", "Helvetica", "Arial", sans-serif',
+    fontFamily:
+      '"Lufga Regular", "Lufga Medium", "Lufga SemiBold", "Lufga Bold","Roboto", "Helvetica", "Arial", sans-serif',
     h1: {
       fontSize: "4rem",
       fontWeight: 700,
       lineHeight: 1.1,
+      "@media(max-width:899px)": {
+        fontSize: "2.5em",
+      },
     },
     h2: {
       fontSize: "2.5rem",
@@ -37,4 +40,4 @@ export const theme = createTheme({
       },
     },
   },
-})
+});

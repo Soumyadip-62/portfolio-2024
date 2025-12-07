@@ -3,7 +3,7 @@ import { Box, Container, Typography } from "@mui/material"
 
 const workExperience = [
   {
-    company: "Webskitters Technology Solutions, Koltaka",
+    company: "Webskitters Technology Solutions, Kolkata",
     period: "July 2023 - Present",
     position: "Frontend Developer",
     description:
@@ -26,7 +26,7 @@ export default function WorkExperienceSection() {
     <Box
       sx={{
         bgcolor: "#F2F4F7",
-        py: 8,
+        py: { md: 8, xs: 5 },
       }}
       id="experience"
     >
@@ -48,7 +48,7 @@ export default function WorkExperienceSection() {
         </Typography>
 
         {/* Timeline Container */}
-        <Box sx={{ maxWidth: 1000, mx: "auto", position: "relative" }}>
+        <Box sx={{ maxWidth: 1000, mx: "auto", position: "relative", display: { xs: 'none', md: 'block' } }}>
           {/* Central Timeline Line */}
           <Box
             sx={{

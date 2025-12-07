@@ -43,7 +43,7 @@ export default function FooterSection() {
       }}
 
     >
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         {/* Header Section */}
         <Box
           sx={{
@@ -92,7 +92,7 @@ export default function FooterSection() {
         <Box
           sx={{
             display: "flex",
-            flexDirection: { xs: "column", lg: "row" },
+            flexDirection: { xs: "column", md: "row" },
             gap: { xs: 4, lg: 6 },
             mb: 4,
           }}
@@ -127,7 +127,7 @@ export default function FooterSection() {
                 maxWidth: 350,
               }}
             >
-              Currently open to new opportunities — feel free to connect via phone, WhatsApp, or LinkedIn.
+              Currently open to new opportunities — feel free to connect via Email, WhatsApp, or LinkedIn.
             </Typography>
 
             {/* Social Media Icons */}
