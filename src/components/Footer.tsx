@@ -1,46 +1,49 @@
 "use client"
-import { Box, Container, Typography, Button, TextField, IconButton, Avatar, Divider } from "@mui/material"
+import { Box, Container, Typography, Button, IconButton, Avatar, Divider } from "@mui/material"
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward"
-import FacebookIcon from "@mui/icons-material/Facebook"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"
-import InstagramIcon from "@mui/icons-material/Instagram"
-import TwitterIcon from "@mui/icons-material/Twitter"
-import SendIcon from "@mui/icons-material/Send"
+import { MailRounded, Phone } from "@mui/icons-material"
+import assets from "../assets"
 
 const navigationLinks = [
   { label: "Home", href: "#home" },
-  { label: "About Us", href: "#about" },
-  { label: "Service", href: "#services" },
+  { label: "About Me", href: "#about" },
   { label: "Resume", href: "#resume" },
   { label: "Project", href: "#projects" },
 ]
 
 const contactInfo = [
-  { label: "+91 7738443636", type: "phone" },
-  { label: "Jaycrea36@gmail.com", type: "email" },
-  { label: "Portfolio.jcrea.com", type: "website" },
+  { label: "+91 7001120224", type: "phone" },
+  { label: "panditsoumya35@gmail.com", type: "email" },
+  // { label: "https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3", type: "linkedin" },
 ]
 
 const socialLinks = [
-  { icon: FacebookIcon, href: "https://facebook.com", label: "Facebook" },
-  { icon: LinkedInIcon, href: "https://linkedin.com", label: "LinkedIn" },
-  { icon: WhatsAppIcon, href: "https://whatsapp.com", label: "WhatsApp" },
-  { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
-  { icon: TwitterIcon, href: "https://twitter.com", label: "Twitter" },
+  // { icon: FacebookIcon, href: "https://facebook.com", label: "Facebook" },
+  { icon: LinkedInIcon, href: "https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3/", label: "LinkedIn" },
+  { icon: WhatsAppIcon, href: "https://wa.me/917001120224", label: "WhatsApp" },
+  { icon: MailRounded, href: "https://mailto:panditsoumya35@gmail.com", label: "Email" },
+  { icon: Phone, href: "tel:+917001120224", label: "Phone" },
+
+
+  // { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
+  // { icon: TwitterIcon, href: "https://twitter.com", label: "Twitter" },
 ]
 
 export default function FooterSection() {
   return (
     <Box
+      id="contact"
       sx={{
         bgcolor: "#2C2C2C",
         color: "white",
         pt: 6,
         pb: 3,
       }}
+
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {/* Header Section */}
         <Box
           sx={{
@@ -62,6 +65,8 @@ export default function FooterSection() {
             Lets Connect there
           </Typography>
           <Button
+            href="https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3/"
+            target="_blank"
             variant="contained"
             endIcon={<ArrowOutwardIcon />}
             sx={{
@@ -95,26 +100,20 @@ export default function FooterSection() {
           {/* Left Section - Brand & Social */}
           <Box sx={{ flex: 1 }}>
             {/* Logo */}
-            <Box sx={{ display: "flex", alignItems: "center", gap: 2, mb: 3 }}>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, marginBottom: 2 }}>
               <Avatar
                 sx={{
-                  bgcolor: "#FF6B35",
-                  width: 40,
-                  height: 40,
-                  fontSize: "1rem",
-                  fontWeight: 600,
+                  bgcolor: "primary.main",
+                  width: 32,
+                  height: 32,
+                  fontSize: "0.875rem",
                 }}
+                src={assets.faviconLogo}
               >
-                JC
+
               </Avatar>
-              <Typography
-                variant="h5"
-                sx={{
-                  fontWeight: 600,
-                  color: "white",
-                }}
-              >
-                JCREA
+              <Typography variant="h6" textTransform={'uppercase'} sx={{ color: "white", fontWeight: 700, fontFamily: 'Cormorant Garamond' }}>
+                Soumyadip
               </Typography>
             </Box>
 
@@ -128,8 +127,7 @@ export default function FooterSection() {
                 maxWidth: 350,
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed congue interdum ligula a dignissim. Lorem
-              ipsum dolor sit amet, consectetur adipiscing elit. Sed lobortis orci elementum egestas lobortis.
+              Currently open to new opportunities — feel free to connect via phone, WhatsApp, or LinkedIn.
             </Typography>
 
             {/* Social Media Icons */}
@@ -230,7 +228,7 @@ export default function FooterSection() {
           </Box>
 
           {/* Right Section - Newsletter */}
-          <Box sx={{ flex: 1 }}>
+          {/* <Box sx={{ flex: 1 }}>
             <Typography
               variant="h6"
               sx={{
@@ -290,13 +288,13 @@ export default function FooterSection() {
                 <SendIcon fontSize="small" />
               </IconButton>
             </Box>
-          </Box>
+          </Box> */}
         </Box>
 
-        <Divider sx={{ bgcolor: "rgba(255, 255, 255, 0.2)", mb: 3 }} />
+        {/* <Divider sx={{ bgcolor: "rgba(255, 255, 255, 0.2)", mb: 3 }} /> */}
 
         {/* Footer Bottom */}
-        <Box
+        {/* <Box
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -350,7 +348,7 @@ export default function FooterSection() {
               Privacy Policy
             </Typography>
           </Box>
-        </Box>
+        </Box> */}
       </Container>
     </Box>
   )

@@ -10,7 +10,7 @@ import {
 } from "@mui/material";
 import ArrowOutwardIcon from "@mui/icons-material/ArrowOutward";
 import assets from "../assets";
-import  { useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -25,16 +25,16 @@ const Banner = () => {
             });
             gsap.fromTo('.exp_badge', {
                 scale: 0
-            }, { scale: 1 ,duration:0.5, delay:0.3})
+            }, { scale: 1, duration: 0.5, delay: 0.3 })
         },
         { scope: rightContainer }
     );
 
 
     return (
-        <Box sx={{ bgcolor: "background.default" }}>
+        <Box sx={{ bgcolor: "background.default" }} id="about">
             <Header />
-            <Container maxWidth="lg" sx={{ mt: 6 }}>
+            <Container maxWidth="xl" sx={{ mt: 6 }}>
                 <Box sx={{ display: "flex", alignItems: "center", minHeight: "75vh" }}>
                     {/* Left Content */}
                     <Box sx={{ flex: 1, pr: 4 }}>
@@ -77,13 +77,37 @@ const Banner = () => {
                             }}
                         >
                             I'm <span className="highlight">Soumyadip</span>,<br />
-                            Product Designer
+                            Frontend Developer
                         </Typography>
 
+
+
+                        {/* Testimonial */}
+                        <Box sx={{ maxWidth: 600 }}>
+
+                            <Typography
+                                variant="body1"
+                                sx={{
+                                    color: "#666",
+                                    lineHeight: 1.6,
+                                    mb: 1,
+                                }}
+                            >
+                                Hi, I’m Soumyadip — a Frontend Developer with 3.5 years of experience turning caffeine into clean code and chaotic ideas into user-friendly web experiences.
+                                I speak fluent JavaScript, dream in React components, and believe great design isn’t just pixels — it’s empathy in action.
+                                Whether it’s taming complex UX problems or collaborating with teams to ship something awesome, I love building interfaces that make users (and their mice) happy.
+
+                            </Typography>
+
+                        </Box>
+
                         {/* Action Buttons */}
-                        <Box sx={{ display: "flex", gap: 2, mb: 6 }}>
+                        <Box sx={{ display: "flex", gap: 2, mt: 6 }}>
                             <Button
                                 variant="contained"
+                                component="a"
+                                href={assets.resume}
+                                download
                                 endIcon={<ArrowOutwardIcon />}
                                 sx={{
                                     bgcolor: "primary.main",
@@ -91,9 +115,11 @@ const Banner = () => {
                                     "&:hover": { bgcolor: "primary.dark" },
                                 }}
                             >
-                                Portfolio
+                                Download Resume
                             </Button>
                             <Button
+                                href="https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3/"
+                                target="_blank"
                                 variant="outlined"
                                 sx={{
                                     borderColor: "#2C2C2C",
@@ -106,40 +132,6 @@ const Banner = () => {
                             >
                                 Hire me
                             </Button>
-                        </Box>
-
-                        {/* Testimonial */}
-                        <Box sx={{ maxWidth: 400 }}>
-                            <Typography
-                                variant="h4"
-                                sx={{
-                                    color: "#2C2C2C",
-                                    fontSize: "2rem",
-                                    mb: 2,
-                                    fontWeight: 300,
-                                }}
-                            >
-                                "
-                            </Typography>
-                            <Typography
-                                variant="body1"
-                                sx={{
-                                    color: "#666",
-                                    lineHeight: 1.6,
-                                    mb: 1,
-                                }}
-                            >
-                                Jenny's Exceptional product design ensure our website's success.
-                            </Typography>
-                            <Typography
-                                variant="body2"
-                                sx={{
-                                    color: "primary.main",
-                                    fontWeight: 600,
-                                }}
-                            >
-                                Highly Recommended
-                            </Typography>
                         </Box>
                     </Box>
 
@@ -227,7 +219,7 @@ const Banner = () => {
                                     fontFamily: "Lufga Semibold",
                                 }}
                             >
-                                10 Years
+                                3+ Years
                             </Typography>
                             <Typography
                                 variant="body2"

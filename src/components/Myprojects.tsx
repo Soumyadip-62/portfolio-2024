@@ -82,6 +82,7 @@ export default function ProjectsSection() {
         position: "relative",
         overflow: "hidden",
       }}
+      id="projects"
     >
       {/* Background Gradient */}
       <Box

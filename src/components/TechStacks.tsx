@@ -45,6 +45,7 @@ export default TechStacks
 
 const StyledtechStacks = styled(Box)`
 padding: 40px 0;
+background-color: #ffffff;
 
   img{
     width: 70px;

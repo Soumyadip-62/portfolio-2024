@@ -3,29 +3,22 @@ import { Box, Container, Typography } from "@mui/material"
 
 const workExperience = [
   {
-    company: "Cognizant, Mumbai",
-    period: "Sep 2016 - July 2020",
-    position: "Experience Designer",
+    company: "Webskitters Technology Solutions, Koltaka",
+    period: "July 2023 - Present",
+    position: "Frontend Developer",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales",
+      "Develop responsive web applications using React and Next.js to enhance user experience. Collaborate with UX/UI designers to implement design best practices and ensure seamless integration.",
     isActive: true,
   },
   {
-    company: "Sugee Pvt limited, Mumbai",
-    period: "Sep 2020 - July 2023",
-    position: "UI/UX Designer",
+    company: "Think Again Lab, Kolkata",
+    period: "February 2022 - July 2023",
+    position: "Frontend Developer",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posusuere in justo vulputate, bibendum sodales",
+      "Collaborated with stakeholders during development processes to confirm creative proposals and design best practices.Managed full-cycle design tasks, handling all phases from conception to completion while maintaining guidelines throughout.",
     isActive: false,
   },
-  {
-    company: "Cinetstox, Mumbai",
-    period: "Sep 2023",
-    position: "Lead UX Designer",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate, bibendum sodales",
-    isActive: true,
-  },
+
 ]
 
 export default function WorkExperienceSection() {
@@ -35,8 +28,9 @@ export default function WorkExperienceSection() {
         bgcolor: "#F2F4F7",
         py: 8,
       }}
+      id="experience"
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         {/* Header */}
         <Typography
           variant="h2"

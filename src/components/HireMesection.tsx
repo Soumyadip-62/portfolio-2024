@@ -10,11 +10,11 @@ gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
   {
-    number: "450+",
-    label: "Project Completed",
+    number: "3.5+",
+    label: "Years of Experience",
   },
   {
-    number: "450+",
+    number: "50+",
     label: "Project Completed",
   },
 ]
@@ -52,7 +52,7 @@ export default function HireMeSection() {
         py: 15,
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Box
           sx={{
             display: "flex",
@@ -145,12 +145,11 @@ export default function HireMeSection() {
                 color: "#666",
                 lineHeight: 1.6,
                 mb: 4,
-                maxWidth: { xs: "100%", md: 400 },
+                maxWidth: { xs: "100%", md: 600 },
                 mx: { xs: "auto", md: 0 },
               }}
             >
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis lacus nunc, posuere in justo vulputate,
-              bibendum sodales
+              With 3.5 years of experience in front-end development, I bring a strong command of React, JavaScript, and modern design principles to deliver efficient, user-centered solutions. I focus on creating functional and visually consistent interfaces that enhance usability and align with business goals. My commitment to collaboration, problem-solving, and continuous improvement helps drive high-quality project outcomes.
             </Typography>
 
             {/* Statistics */}
@@ -189,6 +188,8 @@ export default function HireMeSection() {
 
             {/* Hire Me Button */}
             <Button
+              href="https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3/"
+              target="_blank"
               variant="outlined"
               size="large"
               sx={{

@@ -93,7 +93,7 @@ export default function ServicesSection() {
         }}
       />
 
-      <Container maxWidth="lg" sx={{ position: "relative", zIndex: 2 }}>
+      <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2 }}>
         {/* Header */}
         <Box sx={{ mb: 6 }}>
           <Typography

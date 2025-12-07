@@ -5,14 +5,15 @@ import assets from '../assets'
 const Header = () => {
   return (
     <AppBar
-      position="static"
+      position="relative"
       elevation={0}
       sx={{
         bgcolor: "transparent",
         pt: 2,
+        zIndex: 99
       }}
     >
-      <Container maxWidth="lg">
+      <Container maxWidth="xl">
         <Paper
           elevation={3}
           sx={{
@@ -34,11 +35,12 @@ const Header = () => {
               >
                 Home
               </Button>
-              {["About", "Service"].map((item) => (
-                <Button key={item} sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
-                  {item}
-                </Button>
-              ))}
+              <Button key="About" href='#about' sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
+                About
+              </Button>
+              <Button key="Experience" href='#experience' sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
+                Experience
+              </Button>
             </Box>
 
             <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
@@ -59,11 +61,16 @@ const Header = () => {
             </Box>
 
             <Box sx={{ display: "flex", gap: 1 }}>
-              {["Resume", "Project", "Contact"].map((item) => (
-                <Button key={item} sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
-                  {item}
-                </Button>
-              ))}
+              <Button key="Resume" sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }} href={assets.resume} target="_blank" download>
+                Resume
+              </Button>
+              <Button key="Project" href='#projects' sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
+                Project
+              </Button>
+              <Button key="Contact" href='#contact' sx={{ color: "white", "&:hover": { bgcolor: "rgba(255,255,255,0.1)" } }}>
+                Contact
+              </Button>
+
             </Box>
           </Toolbar>
         </Paper>
