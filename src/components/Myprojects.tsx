@@ -5,60 +5,63 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import LaunchIcon from "@mui/icons-material/Launch"
 import GitHubIcon from "@mui/icons-material/GitHub"
+import assets from "../assets"
+import PreviewModal from "./PreviewModal"
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Dashboard",
+    title: "Next JS Weather App",
     description:
       "A comprehensive dashboard for managing online store operations with real-time analytics, inventory management, and customer insights. Built with modern React architecture and featuring responsive design, this platform helps businesses streamline their operations and make data-driven decisions.",
-    image: "/placeholder.svg?height=400&width=700",
-    technologies: ["React", "TypeScript", "Material-UI", "Node.js", "MongoDB"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/example",
+    image: assets.weather_app_video,
+    technologies: ["Next JS", "TypeScript", "Tailwind CSS",],
+    liveLink: "https://weather-app-amber-three-48.vercel.app/",
+    githubLink: "https://github.com/Soumyadip-62/weather-app",
     category: "Web Application",
-    year: "2024",
+    year: "2023",
   },
   {
     id: 2,
-    title: "Mobile Banking App",
+    title: "Realtime Chat App",
     description:
       "Secure and user-friendly mobile banking application with biometric authentication, transaction history, and budget tracking features. The app prioritizes security while maintaining an intuitive user experience, making financial management accessible to everyone.",
-    image: "/placeholder.svg?height=400&width=700",
-    technologies: ["React Native", "Firebase", "Redux", "Stripe", "Expo"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/example",
-    category: "Mobile App",
+    image: assets.chat_app_video,
+    technologies: ["Next JS", "TypeScript", "Material UI", "Firebase", "Redux", "Stripe", "Expo"],
+    liveLink: "https://chat-app-2024-pink.vercel.app/",
+    githubLink: "https://github.com/Soumyadip-62/chat-app-2024",
+    category: "Web Application",
     year: "2024",
   },
-  {
-    id: 3,
-    title: "Task Management Platform",
-    description:
-      "Collaborative project management tool with team collaboration features, deadline tracking, and progress visualization. This platform enhances team productivity through intuitive task organization and real-time collaboration capabilities.",
-    image: "/placeholder.svg?height=400&width=700",
-    technologies: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/example",
-    category: "Web Application",
-    year: "2023",
-  },
-  {
-    id: 4,
-    title: "AI-Powered Analytics",
-    description:
-      "Machine learning platform that provides predictive analytics and data visualization for business intelligence. The system processes large datasets to deliver actionable insights through beautiful, interactive dashboards.",
-    image: "/placeholder.svg?height=400&width=700",
-    technologies: ["Python", "TensorFlow", "React", "D3.js", "AWS"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com/example",
-    category: "AI/ML",
-    year: "2023",
-  },
+  // {
+  //   id: 3,
+  //   title: "Task Management Platform",
+  //   description:
+  //     "Collaborative project management tool with team collaboration features, deadline tracking, and progress visualization. This platform enhances team productivity through intuitive task organization and real-time collaboration capabilities.",
+  //   image: "/placeholder.svg?height=400&width=700",
+  //   technologies: ["Vue.js", "Express", "MongoDB", "Socket.io", "Docker"],
+  //   liveLink: "https://example.com",
+  //   githubLink: "https://github.com/example",
+  //   category: "Web Application",
+  //   year: "2023",
+  // },
+  // {
+  //   id: 4,
+  //   title: "AI-Powered Analytics",
+  //   description:
+  //     "Machine learning platform that provides predictive analytics and data visualization for business intelligence. The system processes large datasets to deliver actionable insights through beautiful, interactive dashboards.",
+  //   image: "/placeholder.svg?height=400&width=700",
+  //   technologies: ["Python", "TensorFlow", "React", "D3.js", "AWS"],
+  //   liveLink: "https://example.com",
+  //   githubLink: "https://github.com/example",
+  //   category: "AI/ML",
+  //   year: "2023",
+  // },
 ]
 
 export default function ProjectsSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [openPreviewModal, setopenPreviewModal] = useState(false)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % projects.length)
@@ -155,20 +158,27 @@ export default function ProjectsSection() {
                   position: "relative",
                   minHeight: { xs: 300, lg: 500 },
                 }}
+                onClick={() => setopenPreviewModal(true)}
               >
-                <Box
+
+
+                {/* <Box
                   sx={{
-                    position: "absolute",
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: `url(${currentProject.image})`,
-                    backgroundSize: "cover",
+                   
+                    // backgroundImage: `url(${currentProject.image})`,
+                    backgroundSize: "contain",
                     backgroundPosition: "center",
                     transition: "all 0.6s ease",
+                    backgroundRepeat: 'no-repeat',
+                    cursor: "pointer",
                   }}
-                />
+                  className="absolute"
+
+                > */}
+                <video key={currentProject.id} autoPlay loop muted width={'100%'} height={'100%'}>
+                  <source src={currentProject.image} type="video/mp4" />
+                </video>
+                {/* </Box> */}
 
                 {/* Overlay Gradient */}
                 <Box
@@ -217,7 +227,7 @@ export default function ProjectsSection() {
               <Box
                 sx={{
                   flex: 1,
-                  p: { xs: 4, lg: 6 },
+                  p: { xs: 2, lg: 6, sm: 4 },
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
@@ -434,6 +444,7 @@ export default function ProjectsSection() {
           </Typography>
         </Box>
       </Container>
+      <PreviewModal openPreviewModal={openPreviewModal} setopenPreviewModal={setopenPreviewModal} previewImage={currentProject.image} />
     </Box>
   )
 }

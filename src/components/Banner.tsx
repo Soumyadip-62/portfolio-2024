@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import Header from "./header";
 import {
     Button,
@@ -16,12 +16,14 @@ import { useGSAP } from "@gsap/react";
 
 const Banner = () => {
     const rightContainer = useRef<HTMLDivElement | null>(null);
+    const isMobileScreen = useMediaQuery('(max-width:899px)')
+
 
     useGSAP(
         () => {
             gsap.to(".background_effect", {
-                width: "700px",
-                height: "700px",
+                width: isMobileScreen ? "500px" : "700px",
+                height: isMobileScreen ? "500px" : "700px",
                 toggleActions: "play none reverse none",
             });
             gsap.fromTo(
@@ -38,7 +40,7 @@ const Banner = () => {
     return (
         <Box sx={{ bgcolor: "background.default", overflowX: "hidden" }} id="about">
             <Header />
-            <Container maxWidth="lg" sx={{ mt: 6 }}>
+            <Container maxWidth="lg" sx={{ mt: { sm: 6, xs: 2 } }}>
                 <Box
                     sx={{
                         display: "flex",
@@ -46,6 +48,7 @@ const Banner = () => {
                         justifyContent: "space-between",
                         minHeight: "75vh",
                         flexWrap: "wrap",
+                        gap: { xs: 4, sm: 0 },
 
                         '@media(max-width:1199px)': {
                             flexDirection: 'column-reverse',
@@ -119,7 +122,7 @@ const Banner = () => {
                         </Box>
 
                         {/* Action Buttons */}
-                        <Box sx={{ display: "flex", gap: 2, mt: 6 }}>
+                        <Box sx={{ display: "flex", gap: 2, mt: { xs: 3, sm: 6 }, flexWrap: 'wrap' }}>
                             <Button
                                 variant="contained"
                                 component="a"
@@ -159,13 +162,12 @@ const Banner = () => {
                             position: "relative",
                             textAlign: "center",
                             pt: {
-                                xs: 20, lg: 0
+                                xs: 10, lg: 0, sm: 20,
+                            },
+                            pb: {
+                                xs: 8, sm: 0
                             }
-                            // '.show': {
-                            //     width: "700px",
-                            //     height: '600px',
 
-                            // }
                         }}
                     >
                         <Box
@@ -177,7 +179,7 @@ const Banner = () => {
                             sx={{
                                 objectFit: "contain",
                                 position: "absolute",
-                                bottom: "0",
+                                bottom: { xs: "40px", md: 0 },
                                 left: "50%",
                                 transform: "translateX(-50%)",
                                 transition: "all 1s ease-in-out",
@@ -186,8 +188,8 @@ const Banner = () => {
                         {/* Orange Circle Background */}
                         <Box
                             sx={{
-                                width: 400,
-                                height: 400,
+                                width: { xs: 300, sm: 400 },
+                                height: { xs: 300, sm: 400 },
                                 borderRadius: "50%",
                                 bgcolor: "primary.main",
                                 position: "relative",
@@ -225,7 +227,7 @@ const Banner = () => {
                                 borderRadius: "20px",
                                 textAlign: "center",
                                 bgcolor: "white",
-                                width: "58%",
+                                width: { sm: "58%", xs: "100%" },
                             }}
                         >
                             <Rating value={5} readOnly size="small" sx={{ mb: 1 }} />

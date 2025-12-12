@@ -117,7 +117,7 @@ const Header = () => {
             py: 1,
           }}
         >
-          <Toolbar sx={{ justifyContent: "space-between", minHeight: "60px !important", padding: '0 !important' }}>
+          <Toolbar sx={{ justifyContent: "space-between", minHeight: "60px ", padding: '0 !important' }}>
             <Box sx={{ display: { xs: 'none', md: "flex" }, gap: 1 }}>
               <Button
                 variant="contained"

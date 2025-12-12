@@ -35,8 +35,8 @@ export default function HireMeSection() {
       }
     });
     gsap.to('.bg_ring', {
-      width: isMobileScreen ? "340px" : '500px',
-      height: isMobileScreen ? "340px" : '500px',
+      width: isMobileScreen ? "320px" : '500px',
+      height: isMobileScreen ? "320px" : '500px',
       delay: 0.3,
       scrollTrigger: {
         trigger: ".bg_ring",
@@ -51,7 +51,8 @@ export default function HireMeSection() {
     <Box
       sx={{
         bgcolor: "#F2F4F7",
-        py: { md: 15, xs: 8 },
+        py: { md: 15, sm: 8, xs: 6 },
+        pt: { md: 15, xs: 10 }
       }}
     >
       <Container maxWidth="xl">
@@ -88,8 +89,8 @@ export default function HireMeSection() {
               <Box
                 className='img'
                 sx={{
-                  width: { xs: 300, md: 400 },
-                  height: { xs: 300, md: 400 },
+                  width: { xs: 260, sm: 300, md: 400 },
+                  height: { xs: 260, sm: 300, md: 400 },
                   borderRadius: "50px",
                   background: "linear-gradient(135deg, #FF6B35 0%, #FFD166 100%)",
                   position: "relative",

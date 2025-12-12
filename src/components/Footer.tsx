@@ -14,8 +14,8 @@ const navigationLinks = [
 ]
 
 const contactInfo = [
-  { label: "+91 7001120224", type: "phone" },
-  { label: "panditsoumya35@gmail.com", type: "email" },
+  { label: "+91 7001120224", type: "phone", href: "tel:+917001120224" },
+  { label: "panditsoumya35@gmail.com", type: "email", href: "mailto:panditsoumya35@gmail.com" },
   // { label: "https://www.linkedin.com/in/soumyadip-pandit-8a2b881a3", type: "linkedin" },
 ]
 
@@ -94,7 +94,7 @@ export default function FooterSection() {
             display: "flex",
             flexDirection: { xs: "column", md: "row" },
             gap: { xs: 4, lg: 6 },
-            mb: 4,
+            mb: { sm: 4, xs: 0 },
           }}
         >
           {/* Left Section - Brand & Social */}
@@ -218,7 +218,13 @@ export default function FooterSection() {
                     sx={{
                       color: "rgba(255, 255, 255, 0.8)",
                       fontSize: "0.95rem",
+                      ":hover": {
+                        color: "#FF6B35",
+                      }
                     }}
+                    component={'a'}
+                    href={contact.href}
+                    target="_blank"
                   >
                     {contact.label}
                   </Typography>

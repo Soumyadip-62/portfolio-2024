@@ -36,7 +36,7 @@ export default function WorkExperienceSection() {
           variant="h2"
           sx={{
             textAlign: "center",
-            mb: 8,
+            mb: { sm: 8, xs: 4 },
             color: "#2C2C2C",
             fontWeight: 700,
             "& .highlight": {
