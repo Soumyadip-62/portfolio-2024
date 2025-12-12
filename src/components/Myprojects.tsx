@@ -157,6 +157,7 @@ export default function ProjectsSection() {
                   flex: { lg: 1.2 },
                   position: "relative",
                   minHeight: { xs: 300, lg: 500 },
+                  cursor: "pointer",
                 }}
                 onClick={() => setopenPreviewModal(true)}
               >
