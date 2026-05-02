@@ -23,32 +23,68 @@ const stats = [
 export default function HireMeSection() {
 
   const ImageRef = useRef<HTMLDivElement | null>(null)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   const isMobileScreen = useMediaQuery('(max-width:899px)')
 
   useGSAP(() => {
-    gsap.to('.img', {
-      translateY: '20px', delay: 0.5, scrollTrigger: {
+    gsap.fromTo('.hire-copy > *', { opacity: 0, y: 28 }, {
+      opacity: 1,
+      y: 0,
+      duration: 0.7,
+      stagger: 0.08,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: ".hire-copy",
+        start: "top 82%",
+        toggleActions: "play none none reverse",
+      }
+    })
+
+    gsap.fromTo('.img', { opacity: 0, y: 34, rotate: -2 }, {
+      opacity: 1,
+      y: 0,
+      rotate: 0,
+      duration: 0.85,
+      ease: "power3.out",
+      delay: 0.15,
+      scrollTrigger: {
         trigger: ".img",
-        start: "top 80%", // when .img top hits 80% of viewport height
-        toggleActions: "play none reverse none",
+        start: "top 80%",
+        toggleActions: "play none none reverse",
       }
     });
-    gsap.to('.bg_ring', {
-      width: isMobileScreen ? "320px" : '500px',
-      height: isMobileScreen ? "320px" : '500px',
+    gsap.fromTo('.bg_ring', { xPercent: -50, yPercent: -50, rotate: -12, opacity: 0 }, {
+      width: isMobileScreen ? "310px" : '450px',
+      height: isMobileScreen ? "320px" : '466px',
+      xPercent: -50,
+      yPercent: -50,
+      rotate: 0,
+      opacity: 1,
+      duration: 0.9,
+      ease: "power3.out",
       delay: 0.3,
       scrollTrigger: {
         trigger: ".bg_ring",
         start: "top 80%",
-        toggleActions: "play none reverse none",
+        toggleActions: "play none none reverse",
       }
     })
 
-  }, { scope: ImageRef })
+    gsap.to('.bg_ring', {
+      y: -8,
+      duration: 6,
+      repeat: -1,
+      yoyo: true,
+      ease: "sine.inOut",
+      delay: 1,
+    })
+
+  }, { scope: sectionRef, dependencies: [isMobileScreen] })
 
   return (
     <Box
+      ref={sectionRef}
       sx={{
         bgcolor: "#F2F4F7",
         py: { md: 15, sm: 8, xs: 6 },
@@ -76,15 +112,23 @@ export default function HireMeSection() {
             {/* Orange Circle Background */}
             <Box ref={ImageRef} sx={{
               position: 'relative',
-
+              width: { xs: 300, sm: 340, md: 460 },
+              height: { xs: 300, sm: 340, md: 460 },
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              isolation: "isolate",
             }}>
               <img src={assets.bg_ring} alt="background_ring" className="bg_ring" style={{
                 width: 0,
                 height: 0,
                 position: 'absolute',
-                bottom: 0,
+                top: '47%',
                 left: '50%',
-                transform: 'translate(-50%)'
+                transform: 'translate(-50%, -50%)',
+                transformOrigin: 'center',
+                zIndex: 0,
+                pointerEvents: 'none',
               }} />
               <Box
                 className='img'
@@ -98,6 +142,8 @@ export default function HireMeSection() {
                   alignItems: "center",
                   justifyContent: "center",
                   overflow: "hidden",
+                  zIndex: 1,
+                  boxShadow: "0 24px 70px rgba(255, 107, 53, 0.18)",
                 }}
               >
                 {/* Professional Photo */}
@@ -120,6 +166,7 @@ export default function HireMeSection() {
 
           {/* Right Side - Content */}
           <Box
+            className="hire-copy"
             sx={{
               flex: { md: 1 },
               pl: { md: 4 },

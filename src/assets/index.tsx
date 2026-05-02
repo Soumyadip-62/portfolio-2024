@@ -8,5 +8,6 @@ export default {
     weather_app: '/assets/images/Wheather-App.png',
     chat_app_video: '/assets/chat-app-2024.mp4',
     weather_app_video: '/assets/Next-Wheather-App.mp4',
+    achintya_demo_video: '/assets/achintya-demo.mp4',
 
 }

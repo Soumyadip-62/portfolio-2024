@@ -1,5 +1,11 @@
 "use client"
 import { Box, Container, Typography } from "@mui/material"
+import { useRef } from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const workExperience = [
   {
@@ -22,8 +28,78 @@ const workExperience = [
 ]
 
 export default function WorkExperienceSection() {
+  const sectionRef = useRef<HTMLDivElement | null>(null)
+
+  useGSAP(() => {
+    gsap.fromTo(
+      ".section-title",
+      { opacity: 0, y: 28 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".section-title",
+          start: "top 86%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+
+    gsap.fromTo(
+      ".timeline-line",
+      { scaleY: 0, transformOrigin: "top center" },
+      {
+        scaleY: 1,
+        duration: 1.1,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: ".timeline",
+          start: "top 78%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+
+    gsap.fromTo(
+      ".timeline-item",
+      { opacity: 0, y: 42 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        stagger: 0.18,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".timeline",
+          start: "top 76%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+
+    gsap.fromTo(
+      ".mobile-timeline-item",
+      { opacity: 0, x: -24 },
+      {
+        opacity: 1,
+        x: 0,
+        duration: 0.65,
+        stagger: 0.15,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".mobile-timeline",
+          start: "top 82%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+  }, { scope: sectionRef })
+
   return (
     <Box
+      ref={sectionRef}
       sx={{
         bgcolor: "#F2F4F7",
         py: { md: 8, xs: 5 },
@@ -33,6 +109,7 @@ export default function WorkExperienceSection() {
       <Container maxWidth="xl">
         {/* Header */}
         <Typography
+          className="section-title"
           variant="h2"
           sx={{
             textAlign: "center",
@@ -48,9 +125,10 @@ export default function WorkExperienceSection() {
         </Typography>
 
         {/* Timeline Container */}
-        <Box sx={{ maxWidth: 1000, mx: "auto", position: "relative", display: { xs: 'none', md: 'block' } }}>
+        <Box className="timeline" sx={{ maxWidth: 1000, mx: "auto", position: "relative", display: { xs: 'none', md: 'block' } }}>
           {/* Central Timeline Line */}
           <Box
+            className="timeline-line"
             sx={{
               position: "absolute",
               left: "50%",
@@ -68,6 +146,7 @@ export default function WorkExperienceSection() {
           {workExperience.map((experience, index) => (
             <Box
               key={index}
+              className="timeline-item"
               sx={{
                 position: "relative",
                 mb: index === workExperience.length - 1 ? 0 : 8,
@@ -116,6 +195,7 @@ export default function WorkExperienceSection() {
                 }}
               >
                 <Box
+                  className={experience.isActive ? "timeline-dot is-active" : "timeline-dot"}
                   sx={{
                     width: 16,
                     height: 16,
@@ -160,10 +240,11 @@ export default function WorkExperienceSection() {
         </Box>
 
         {/* Mobile Timeline - Stack Layout */}
-        <Box sx={{ display: { xs: "block", md: "none" }, maxWidth: 600, mx: "auto" }}>
+        <Box className="mobile-timeline" sx={{ display: { xs: "block", md: "none" }, maxWidth: 600, mx: "auto" }}>
           {workExperience.map((experience, index) => (
             <Box
               key={index}
+              className="mobile-timeline-item"
               sx={{
                 position: "relative",
                 mb: index === workExperience.length - 1 ? 0 : 6,
@@ -185,6 +266,7 @@ export default function WorkExperienceSection() {
 
               {/* Mobile Timeline Dot */}
               <Box
+                className={experience.isActive ? "timeline-dot is-active" : "timeline-dot"}
                 sx={{
                   position: "absolute",
                   left: 0,

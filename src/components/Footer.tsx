@@ -5,6 +5,12 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import WhatsAppIcon from "@mui/icons-material/WhatsApp"
 import { MailRounded, Phone } from "@mui/icons-material"
 import assets from "../assets"
+import { useRef } from "react"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const navigationLinks = [
   { label: "Home", href: "#home" },
@@ -32,8 +38,30 @@ const socialLinks = [
 ]
 
 export default function FooterSection() {
+  const footerRef = useRef<HTMLDivElement | null>(null)
+
+  useGSAP(() => {
+    gsap.fromTo(
+      ".footer-reveal",
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.7,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".footer-reveal",
+          start: "top 88%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+  }, { scope: footerRef })
+
   return (
     <Box
+      ref={footerRef}
       id="contact"
       sx={{
         bgcolor: "#2C2C2C",
@@ -46,6 +74,7 @@ export default function FooterSection() {
       <Container maxWidth="lg">
         {/* Header Section */}
         <Box
+          className="footer-reveal"
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -86,7 +115,7 @@ export default function FooterSection() {
           </Button>
         </Box>
 
-        <Divider sx={{ bgcolor: "rgba(255, 255, 255, 0.2)", mb: 4 }} />
+        <Divider className="footer-reveal" sx={{ bgcolor: "rgba(255, 255, 255, 0.2)", mb: 4 }} />
 
         {/* Main Content */}
         <Box
@@ -98,7 +127,7 @@ export default function FooterSection() {
           }}
         >
           {/* Left Section - Brand & Social */}
-          <Box sx={{ flex: 1 }}>
+          <Box className="footer-reveal" sx={{ flex: 1 }}>
             {/* Logo */}
             <Box sx={{ display: "flex", alignItems: "center", gap: 1, marginBottom: 2 }}>
               <Avatar
@@ -146,7 +175,9 @@ export default function FooterSection() {
                       height: 40,
                       "&:hover": {
                         bgcolor: "#FF6B35",
+                        transform: "translateY(-4px)",
                       },
+                      transition: "all 0.25s ease",
                     }}
                   >
                     <IconComponent fontSize="small" />
@@ -158,6 +189,7 @@ export default function FooterSection() {
 
           {/* Center Section - Navigation & Contact */}
           <Box
+            className="footer-reveal"
             sx={{
               flex: 1,
               display: "flex",

@@ -1,12 +1,17 @@
 "use client"
 import { Box, Container, Typography, Button, Card, IconButton, Chip } from "@mui/material"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos"
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos"
 import LaunchIcon from "@mui/icons-material/Launch"
 import GitHubIcon from "@mui/icons-material/GitHub"
 import assets from "../assets"
 import PreviewModal from "./PreviewModal"
+import gsap from "gsap"
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from "gsap/ScrollTrigger"
+
+gsap.registerPlugin(ScrollTrigger)
 
 const projects = [
   {
@@ -32,6 +37,16 @@ const projects = [
     githubLink: "https://github.com/Soumyadip-62/chat-app-2024",
     category: "Web Application",
     year: "2024",
+  },
+  {
+    id: 3,
+    title: "Achintya",
+    description:
+      "A demo preview for the Achintya project, highlighting the core product experience, interface flow, and polished web interactions.",
+    image: assets.achintya_demo_video,
+    technologies: ["React", "TypeScript", "Material UI"],
+    category: "Web Application",
+    year: "2026",
   },
   // {
   //   id: 3,
@@ -62,6 +77,7 @@ const projects = [
 export default function ProjectsSection() {
   const [currentSlide, setCurrentSlide] = useState(0)
   const [openPreviewModal, setopenPreviewModal] = useState(false)
+  const sectionRef = useRef<HTMLDivElement | null>(null)
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % projects.length)
@@ -77,8 +93,59 @@ export default function ProjectsSection() {
 
   const currentProject = projects[currentSlide]
 
+  useGSAP(() => {
+    gsap.fromTo(
+      ".projects-heading > *",
+      { opacity: 0, y: 28 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.75,
+        stagger: 0.08,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".projects-heading",
+          start: "top 84%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+
+    gsap.fromTo(
+      ".project-card",
+      { opacity: 0, y: 56, scale: 0.96 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: 0.95,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: ".project-card",
+          start: "top 82%",
+          toggleActions: "play none none reverse",
+        },
+      }
+    )
+  }, { scope: sectionRef })
+
+  useGSAP(() => {
+    gsap.fromTo(
+      ".project-media",
+      { opacity: 0, x: -32, scale: 1.03 },
+      { opacity: 1, x: 0, scale: 1, duration: 0.65, ease: "power3.out" }
+    )
+
+    gsap.fromTo(
+      ".project-copy > *",
+      { opacity: 0, y: 18 },
+      { opacity: 1, y: 0, duration: 0.5, stagger: 0.055, ease: "power2.out" }
+    )
+  }, { scope: sectionRef, dependencies: [currentSlide] })
+
   return (
     <Box
+      ref={sectionRef}
       sx={{
         bgcolor: "#1A1A1A",
         py: { md: 8, xs: 5 },
@@ -90,19 +157,20 @@ export default function ProjectsSection() {
     >
       {/* Background Gradient */}
       <Box
+        className="project-ambient"
         sx={{
           position: "absolute",
           top: 0,
           left: 0,
           right: 0,
           bottom: 0,
-          background: "linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%)",
+          background: "radial-gradient(circle at 20% 10%, rgba(255, 107, 53, 0.16), transparent 30%), linear-gradient(135deg, #1A1A1A 0%, #2C2C2C 100%)",
         }}
       />
 
       <Container maxWidth="xl" sx={{ position: "relative", zIndex: 2 }}>
         {/* Header */}
-        <Box sx={{ textAlign: "center", mb: 8 }}>
+        <Box className="projects-heading" sx={{ textAlign: "center", mb: 8 }}>
           <Typography
             variant="h2"
             sx={{
@@ -133,6 +201,7 @@ export default function ProjectsSection() {
         {/* Main Project Card */}
         <Box sx={{ position: "relative", mb: 6 }}>
           <Card
+            className="project-card"
             sx={{
               bgcolor: "rgba(255, 255, 255, 0.05)",
               backdropFilter: "blur(20px)",
@@ -142,6 +211,12 @@ export default function ProjectsSection() {
               transition: "all 0.6s ease",
               maxWidth: 1200,
               mx: "auto",
+              boxShadow: "0 28px 90px rgba(0, 0, 0, 0.32)",
+              "&:hover": {
+                transform: "translateY(-8px)",
+                borderColor: "rgba(255, 107, 53, 0.35)",
+                boxShadow: "0 38px 110px rgba(0, 0, 0, 0.45)",
+              },
             }}
           >
             <Box
@@ -153,6 +228,7 @@ export default function ProjectsSection() {
             >
               {/* Project Image */}
               <Box
+                className="project-media"
                 sx={{
                   flex: { lg: 1.2 },
                   position: "relative",
@@ -176,7 +252,7 @@ export default function ProjectsSection() {
                   className="absolute"
 
                 > */}
-                <video key={currentProject.id} autoPlay loop muted width={'100%'} height={'100%'}>
+                <video className="project-video" key={currentProject.id} autoPlay loop muted playsInline width={'100%'} height={'100%'}>
                   <source src={currentProject.image} type="video/mp4" />
                 </video>
                 {/* </Box> */}
@@ -226,6 +302,7 @@ export default function ProjectsSection() {
 
               {/* Project Content */}
               <Box
+                className="project-copy"
                 sx={{
                   flex: 1,
                   p: { xs: 2, lg: 6, sm: 4 },
@@ -298,59 +375,65 @@ export default function ProjectsSection() {
                 </Box>
 
                 {/* Action Buttons */}
-                <Box
-                  sx={{
-                    display: "flex",
-                    gap: 3,
-                    flexDirection: { xs: "column", sm: "row" },
-                  }}
-                >
-                  <Button
-                    variant="contained"
-                    startIcon={<LaunchIcon />}
-                    href={currentProject.liveLink}
-                    target="_blank"
+                {(currentProject.liveLink || currentProject.githubLink) && (
+                  <Box
                     sx={{
-                      bgcolor: "#FF6B35",
-                      color: "white",
-                      borderRadius: "12px",
-                      px: 3,
-                      py: 1.5,
-                      fontSize: "1rem",
-                      fontWeight: 600,
-                      "&:hover": {
-                        bgcolor: "#E55A2B",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
+                      display: "flex",
+                      gap: 3,
+                      flexDirection: { xs: "column", sm: "row" },
                     }}
                   >
-                    View Live Project
-                  </Button>
-                  <Button
-                    variant="outlined"
-                    startIcon={<GitHubIcon />}
-                    href={currentProject.githubLink}
-                    target="_blank"
-                    sx={{
-                      borderColor: "rgba(255, 255, 255, 0.3)",
-                      color: "white",
-                      borderRadius: "12px",
-                      px: 3,
-                      py: 1.5,
-                      fontSize: "1rem",
-                      fontWeight: 500,
-                      "&:hover": {
-                        borderColor: "#FF6B35",
-                        bgcolor: "rgba(255, 107, 53, 0.1)",
-                        transform: "translateY(-2px)",
-                      },
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    View Code
-                  </Button>
-                </Box>
+                    {currentProject.liveLink && (
+                      <Button
+                        variant="contained"
+                        startIcon={<LaunchIcon />}
+                        href={currentProject.liveLink}
+                        target="_blank"
+                        sx={{
+                          bgcolor: "#FF6B35",
+                          color: "white",
+                          borderRadius: "12px",
+                          px: 3,
+                          py: 1.5,
+                          fontSize: "1rem",
+                          fontWeight: 600,
+                          "&:hover": {
+                            bgcolor: "#E55A2B",
+                            transform: "translateY(-2px)",
+                          },
+                          transition: "all 0.3s ease",
+                        }}
+                      >
+                        View Live Project
+                      </Button>
+                    )}
+                    {currentProject.githubLink && (
+                      <Button
+                        variant="outlined"
+                        startIcon={<GitHubIcon />}
+                        href={currentProject.githubLink}
+                        target="_blank"
+                        sx={{
+                          borderColor: "rgba(255, 255, 255, 0.3)",
+                          color: "white",
+                          borderRadius: "12px",
+                          px: 3,
+                          py: 1.5,
+                          fontSize: "1rem",
+                          fontWeight: 500,
+                          "&:hover": {
+                            borderColor: "#FF6B35",
+                            bgcolor: "rgba(255, 107, 53, 0.1)",
+                            transform: "translateY(-2px)",
+                          },
+                          transition: "all 0.3s ease",
+                        }}
+                      >
+                        View Code
+                      </Button>
+                    )}
+                  </Box>
+                )}
               </Box>
             </Box>
           </Card>
